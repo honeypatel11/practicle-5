@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagram Checker</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="card text-center p-4">
+            <h2>	<i class="fas fa-random"></i> Anagram Checker</h2>
+>
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-keyboard"></i></span>
+                <input type="text" id="str1" class="form-control" placeholder="Enter first string">
+            </div>
+
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-keyboard"></i></span>
+                <input type="text" id="str2" class="form-control" placeholder="Enter second string">
+            </div>
+
+            <div>
+                <button onclick="anagrams()" class="btn">
+                    <i class=""></i> 🔍 Check Anagrams
+                </button>
+                <button onclick="clearFields()" class="btn ">
+                    <i class="fas fa-trash"></i> Clear
+                </button>
+            </div>
+            <div class="mt-4">
+                <a href="index.html" class="btn  btn-custom">
+                    <i class="fas fa-home"></i> Go to Home
+                </a>
+            </div>
+
+            <div id="ans" class="mt-3 output"></div>
+        </div>
+    </div>
+
+    <script src="./assets/js/jquery.js"></script>
+
+    <script>
+        function anagrams() {
+            let val1 = document.getElementById("str1").value.toLowerCase().replace(/\s+/g, '');
+            let val2 = document.getElementById("str2").value.toLowerCase().replace(/\s+/g, '');
+
+            let sort1 = val1.split("").sort().join("");
+            let sort2 = val2.split("").sort().join("");
+
+            if (sort1 === sort2) {
+                document.getElementById("ans").innerHTML = "<strong style='color:green;'>✔ It's an Anagram!</strong>";
+            } else {
+                document.getElementById("ans").innerHTML = "<strong style='color:red;'>❌ Not an Anagram!</strong>";
+            }
+        }
+
+        function clearFields() {
+            document.getElementById("str1").value = "";
+            document.getElementById("str2").value = "";
+            document.getElementById("ans").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>

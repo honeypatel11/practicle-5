@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+</head>
+<body>
+   <div class="background"></div>
+    <div class="container">
+        <div class="card">
+            <div>
+                <h2><i class="fas fa-sync-alt"></i> Palindrome Checker</h2>
+            </div>
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-keyboard"></i></span>
+                <input type="text" id="input" class="form-control" placeholder="Enter a word or number">
+            </div>
+
+                <div>
+                    <button onclick="checkPalindrome()" class="btn">
+                        <i class=""></i> 🔍 Check Palindrome
+                    </button>
+                    <button onclick="clearFields()" class="btn">
+                        <i class="fas fa-trash"></i>  Clear
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <a href="index.html" class="btn  btn-custom">
+                        <i class="fas fa-home"></i> Go to Home
+                    </a>
+                </div>
+            <div id="ans" class="output"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./assets/js/jquery.js"></script>
+    <script>
+        function checkPalindrome() {
+            let inputText = document.getElementById("input").value.trim();
+            let ans = document.getElementById("ans");
+
+            if (inputText === "") {
+                ans.innerHTML = "⚠️ <b>Please enter a value!</b>";
+                ans.className = "output error";
+                return;
+            }
+
+            let reversedText = inputText.split('').reverse().join('');
+            if (inputText === reversedText) {
+                ans.innerHTML = `✅ <b>"${inputText}" is a Palindrome!</b>`;
+                ans.className = "output success";
+            } else {
+                ans.innerHTML = `❌ <b>"${inputText}" is NOT a Palindrome!</b>`;
+                ans.className = "output error";
+            }
+        }
+        function clearFields() {
+            document.getElementById("input").value = "";
+            document.getElementById("ans").innerHTML = "";
+            document.getElementById("ans").className = "output";
+        }
+    </script>
+
+</body>
+</html>

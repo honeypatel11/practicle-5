@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Case Converter</title>
+
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="card text-center p-4">
+            <h2><i class="fas fa-text-height"></i> Text Case Converter</h2>
+
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-keyboard"></i></span>
+                <input type="text" id="val" class="form-control" placeholder="Enter The Text">
+            </div>
+
+            <div class="mt-3">
+                <button id="btnLower" class="btn">
+                    <i class="fas fa-arrow-down"></i> 🔽 Lowercase
+                </button>
+                <button id="btnUpper" class="btn">
+                    <i class="fas fa-arrow-up"></i> 🔼 Uppercase
+                </button>
+                <button id="btnToggle" class="btn">
+                    <i class="fas fa-exchange-alt"></i> 🔄 Toggle Case
+                </button>
+            </div>
+            <div class="mt-4">
+                <a href="index.html" class="btn  btn-custom">
+                    <i class="fas fa-home"></i> Go to Home
+                </a>
+            </div>
+
+            <div class="mt-3">
+                <label for="ans" class="fw-bold fs-5">Converted Text:</label>
+                <input type="text" id="ans" class="form-control text-center fw-bold mt-3" placeholder="Converted text" readonly>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/jquery.js"></script>
+    <script>
+        let value = document.getElementById("val");
+        let answer = document.getElementById("ans");
+
+        function convertText(type) {
+            let inputStr = value.value.trim();
+
+            if (inputStr === "") {
+                answer.value = "⚠️ Please enter some text!";
+                answer.style.color = "red";
+                return;
+            }
+
+            let result = "";
+            if (type === "upper") {
+                result = inputStr.toUpperCase();
+            } else if (type === "lower") {
+                result = inputStr.toLowerCase();
+            } else if (type === "toggle") {
+                result = [...inputStr].map(char => 
+                    char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase()
+                ).join("");
+            }
+
+            answer.value = result;
+            answer.style.color = "black"; // Reset text color
+        }
+
+        $(document).ready(function () {
+            $("#btnLower").on("click", function () {
+                convertText("lower");
+            });
+            $("#btnUpper").on("click", function () {
+                convertText("upper");
+            });
+            $("#btnToggle").on("click", function () {
+                convertText("toggle");
+            });
+        });
+    </script>
+</body>
+
+</html>

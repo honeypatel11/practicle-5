@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Array Values</title>
+    
+    <!--  CSS -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+</head>
+
+
+    <body>
+
+        <div class="background"></div>
+    
+        <div class="container">
+            <div class="card">
+                <div>
+                    <h2><i class="fas fa-list-ul"></i> Unique Values</h2>
+                </div>
+                <div class="input-group">
+                    <span class="icon"><i class="fas fa-keyboard"></i></span>
+                    <input type="text" id="input1" class="form-control" placeholder="Enter value 1">
+                </div>
+    
+                <div class="input-group">
+                    <span class="icon"><i class="fas fa-keyboard"></i></span>
+                    <input type="text" id="input2" class="form-control" placeholder="Enter value 2">
+                </div>
+    
+                <div class="input-group">
+                    <span class="icon"><i class="fas fa-keyboard"></i></span>
+                    <input type="text" id="input3" class="form-control" placeholder="Enter value 3">
+                </div>
+    
+    
+               <div>
+                <button onclick="getUniqueValues()" class="btn">
+                    <i class="fas fa-check-circle"></i> Get Unique Values
+                </button>
+
+                <button onclick="clearFields()" class="btn">
+                    <i class="fas fa-trash"></i> Clear
+                </button>
+               </div>
+               <div class="mt-4">
+                <a href="index.html" class="btn  btn-custom">
+                    <i class="fas fa-home"></i> Go to Home
+                </a>
+            </div>
+    
+                <div id="ans" class="output"></div>
+            </div>
+        </div>
+    
+
+    <!-- Link to JavaScript -->
+     <script src="./assets/js/jquery.js"></script>
+     <script>
+        function getUniqueValues() {
+            let arr = [];
+            for (let i = 1; i <= 3; i++) {
+                let val = document.getElementById(`input${i}`).value.trim();
+                if (val === "") {
+                    document.getElementById("ans").innerHTML = "⚠️ <b>Please fill all fields!</b>";
+                    document.getElementById("ans").className = "output error";
+                    return;
+                }
+                arr.push(val);
+            }
+
+            let uniqueArray = arr.filter((item, index) => arr.indexOf(item) === index);
+
+            if (uniqueArray.length < arr.length) {
+                document.getElementById("ans").innerHTML = "⚠️ <b>Duplicate values found! Please enter unique values.</b>";
+                document.getElementById("ans").className = "output error";
+            } else {
+                document.getElementById("ans").innerHTML = `✔️ <b>Unique Values:</b> ${uniqueArray.join(", ")}`;
+                document.getElementById("ans").className = "output success";
+            }
+        }
+
+        function clearFields() {
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`input${i}`).value = "";
+            }
+            document.getElementById("ans").innerHTML = "";
+            document.getElementById("ans").className = "output";
+        }
+    </script>
+</body>
+</html>

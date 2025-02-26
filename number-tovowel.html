@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vowel & Consonant Counter</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="card">
+            <div>
+                <h2><i class="fas fa-font"></i>🔡 Vowel & Consonant Counter</h2>
+            </div>
+
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-keyboard"></i></span>
+                <input type="text" id="input" class="form-control" placeholder="Enter The String">
+            </div>
+
+            <button onclick="countVowelsConsonants()" class="btn">
+                <i class="x"></i> 🔍 Check Vowels & Consonants
+            </button>
+            <button onclick="clearFields()" class="btn">
+                <i class="fas fa-trash"></i> Clear
+            </button>
+            <div class="mt-4">
+                <a href="index.html" class="btn  btn-custom">
+                    <i class="fas fa-home"></i> Go to Home
+                </a>
+            </div>
+
+            <div id="ans" class="output"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+     <script src="./assets/js/jquery.js"></script>
+    <script>
+        function countVowelsConsonants() {
+            let inputText = document.getElementById("input").value.trim().toLowerCase();
+            let ans = document.getElementById("ans");
+
+            if (inputText === "") {
+                ans.innerHTML = "⚠️ <b>Please enter a string!</b>";
+                ans.className = "output error";
+                return;
+            }
+
+            let vowels = "aeiou";
+            let vowelCount = 0, consonantCount = 0;
+
+            for (let char of inputText) {
+                if (vowels.includes(char)) {
+                    vowelCount++;
+                } else if (char >= 'a' && char <= 'z') {
+                    consonantCount++;
+                }
+            }
+
+            ans.innerHTML = `🔠 <b>Vowels:</b> <span style="color:green;">${vowelCount} 🟢</span> 
+                             | <b>Consonants:</b> <span style="color:blue;">${consonantCount} 🔵</span>`;
+            ans.className = "output success";
+        }
+
+        function clearFields() {
+            document.getElementById("input").value = "";
+            document.getElementById("ans").innerHTML = "";
+            document.getElementById("ans").className = "output";
+        }
+    </script>
+
+</body>
+
+</html>

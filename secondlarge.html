@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Second Smallest & Largest</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- Google Font for stylish text -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="card">
+            <div>
+                <h2><i class="fas fa-sort-numeric-up-alt"></i> Second Smallest & Largest</h2>
+            </div>
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-keyboard"></i></span>
+                <input type="text" id="input1" class="form-control" placeholder="Enter value 1">
+            </div>
+
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-keyboard"></i></span>
+                <input type="text" id="input2" class="form-control" placeholder="Enter value 2">
+            </div>
+
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-keyboard"></i></span>
+                <input type="text" id="input3" class="form-control" placeholder="Enter value 3">
+            </div>
+
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-keyboard"></i></span>
+                <input type="text" id="input4" class="form-control" placeholder="Enter value 4">
+            </div>
+
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-keyboard"></i></span>
+                <input type="text" id="input5" class="form-control" placeholder="Enter value 5">
+            </div>
+            <div>
+
+                <button onclick="findSecondValues()" class="btn">
+                    <i class="fas fa-calculator"></i> Calculate
+                </button>
+
+
+                <button onclick="clearFields()" class="btn">
+                    <i class="fas fa-trash"></i> Clear
+                </button>
+            </div>
+            <div class="mt-4">
+                <a href="index.html" class="btn  btn-custom">
+                    <i class="fas fa-home"></i> Go to Home
+                </a>
+            </div>
+
+            <div id="ans" class="output"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript Code -->
+    <script>
+        function findSecondValues() {
+            let arr = [];
+            for (let i = 1; i <= 5; i++) {
+                let val = document.getElementById(`input${i}`).value.trim();
+                if (!val || isNaN(val)) {
+                    document.getElementById("ans").innerHTML = "❌ Please enter valid numbers!";
+                    return;
+                }
+                arr.push(Number(val));
+            }
+
+            arr.sort((a, b) => a - b); // Sort in ascending order
+
+            // Display sorted input values
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`input${i}`).value = arr[i - 1];
+            }
+
+            // Display result with icons and emojis
+            document.getElementById("ans").innerHTML =
+                arr.length >= 4
+                    ? `📉 Second Smallest: <b>${arr[1]}</b> | 📈 Second Largest: <b>${arr[3]}</b>`
+                    : "❌ Please enter at least 4 valid numbers!";
+        }
+
+        function clearFields() {
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`input${i}`).value = "";
+            }
+            document.getElementById("ans").innerHTML = "";
+            document.getElementById("ans").className = "output";
+        }
+    </script>
+
+</body>
+
+</html>
